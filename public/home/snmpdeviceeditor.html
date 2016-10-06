@@ -12,7 +12,7 @@
 	</div>
 
 	<accordion [closeOthers]="oneAtATime">
-  		<accordion-group #group  *ngFor="lset snmpdev of snmpdevs" [heading]="snmpdev.id">
+  		<accordion-group #group  *ngFor="let snmpdev of snmpdevs" [heading]="snmpdev.id">
    			<div accordion-heading>
     				<i style="top: -15px" class="pull-right glyphicon"
          			[ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>

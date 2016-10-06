@@ -3,7 +3,7 @@ import { NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { Http, Headers } from '@angular/http';
 import { AuthHttp,JwtHelper } from 'angular2-jwt';
 import { Router } from '@angular/router';
-import { SnmpDeviceCfgComponent } from './snmpdevicecfg.component';
+//import { SnmpDeviceCfgComponent } from './snmpdevicecfg.component';
 
 
 @Component({

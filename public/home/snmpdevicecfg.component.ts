@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-//import { CORE_DIRECTIVES } from '@angular/common';
 import {  FormBuilder,  Validators} from '@angular/forms';
-import { DropdownModule, PaginationModule ,AccordionModule } from 'ng2-bootstrap';
+//import { DropdownModule, PaginationModule ,AccordionModule } from 'ng2-bootstrap';
 import { SnmpDeviceService } from './snmpdevicecfg.service';
 import {ControlMessages} from './control-messages.component';
 
@@ -20,6 +19,7 @@ import {ControlMessages} from './control-messages.component';
 })
 
 export class SnmpDeviceCfgComponent {
+  public oneAtATime:boolean = true;
   editmode: string; //list , create, modify
   snmpdevs: Array<any>;
   filter: string;
