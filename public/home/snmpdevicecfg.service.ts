@@ -1,7 +1,7 @@
-import { Http,Headers } from 'angular2/http';
+import { Http,Headers } from '@angular/http';
 // normally this would be imported from 'angular2/core'
 // but in our compiler we're pulling the dev version of angular2
-import { Injectable } from 'angular2/core';
+import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
 import * as _ from 'lodash';
 

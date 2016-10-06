@@ -1,15 +1,14 @@
-import { Component } from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
-import { NgSwitch, NgSwitchWhen, NgSwitchDefault } from 'angular2/common';
-import { Http, Headers } from 'angular2/http';
+import { Component } from '@angular/core';
+import { NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+import { Http, Headers } from '@angular/http';
 import { AuthHttp,JwtHelper } from 'angular2-jwt';
-import { Router } from 'angular2/router';
+import { Router } from '@angular/router';
 import { SnmpDeviceCfgComponent } from './snmpdevicecfg.component';
 
 
 @Component({
   selector: 'home',
-  directives: [CORE_DIRECTIVES,NgSwitch,NgSwitchWhen,NgSwitchDefault,SnmpDeviceCfgComponent],
+  //directives: [CORE_DIRECTIVES,NgSwitch,NgSwitchWhen,NgSwitchDefault,SnmpDeviceCfgComponent],
   templateUrl: '/public/home/home.html',
   styleUrls: [ '/public/home/home.css' ]
 })
@@ -31,7 +30,8 @@ export class Home {
 
   logout() {
     localStorage.removeItem('jwt');
-    this.router.parent.navigateByUrl('/login');
+    //this.router.parent.navigateByUrl('/login');
+    this.router.navigateByUrl('/login');
   }
 
   SNMPDevices() {
@@ -52,7 +52,7 @@ export class Home {
   InfluxServers() {
 	  this.item_type = "influxserver";
   }
-	
+
   /*
   callAnonymousApi() {
     this._callApi('Anonymous', 'http://localhost:3001/api/random-quote');

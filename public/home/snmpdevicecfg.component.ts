@@ -1,25 +1,29 @@
-import { Component } from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
-import {FORM_DIRECTIVES, FORM_BINDINGS,FormBuilder, NgFormModel, ControlGroup, Control, Validators} from 'angular2/common';
-import { ACCORDION_DIRECTIVES } from 'ng2-bootstrap';
+import { Component } from '@angular/core';
+//import { CORE_DIRECTIVES } from '@angular/common';
+import {  FormBuilder,  Validators} from '@angular/forms';
+import { DropdownModule, PaginationModule ,AccordionModule } from 'ng2-bootstrap';
 import { SnmpDeviceService } from './snmpdevicecfg.service';
 import {ControlMessages} from './control-messages.component';
+
+
+
+
 
 @Component({
   selector: 'snmpdevs',
   providers: [SnmpDeviceService],
   templateUrl: '/public/home/snmpdeviceeditor.html',
   styleUrls:['public/home/snmpdeviceeditor.css'],
-  bindings: [SnmpDeviceService],
-  viewBindings: [FORM_BINDINGS],
-  directives: [ACCORDION_DIRECTIVES,CORE_DIRECTIVES,FORM_DIRECTIVES,ControlMessages]
+  //bindings: [SnmpDeviceService],
+  //viewBindings: [FORM_BINDINGS],
+  //directives: [FormBuilder,Validators,DropdownModule, PaginationModule ,AccordionModule,ControlMessages]
 })
 
 export class SnmpDeviceCfgComponent {
   editmode: string; //list , create, modify
   snmpdevs: Array<any>;
   filter: string;
-  snmpdevForm: ControlGroup;
+  snmpdevForm: any;
 
   reloadData(){
   // now it's a simple subscription to the observable

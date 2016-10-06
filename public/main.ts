@@ -1,4 +1,4 @@
-import {bootstrap}    from 'angular2/platform/browser';
+/*import {bootstrap}    from 'angular2/platform/browser';
 import { provide } from 'angular2/core';
 import { FORM_PROVIDERS } from 'angular2/common';
 import { ROUTER_PROVIDERS } from 'angular2/router';
@@ -21,4 +21,9 @@ bootstrap(
 	 deps: [Http]
 	 })
     ]
-);
+);*/
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './main.module';
+
+platformBrowserDynamic().bootstrapModule(AppModule);
