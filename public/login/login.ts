@@ -22,7 +22,7 @@ export class Login {
         response => {
           console.log('id_token: '+response.json())
           localStorage.setItem('id_token', response.json());
-          this.router.navigate(['Home']);
+          this.router.navigate(['home']);
         },
         error => {
           alert(error.text());

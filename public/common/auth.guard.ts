@@ -8,12 +8,20 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate() {
-    console.log('check canActivate:'+tokenNotExpired())
-    if (tokenNotExpired()) {
-      return true;
+    console.log('check canActivate:');
+    var token: string;
+    token=localStorage.getItem('id_token');
+    if (token) {
+          return true;
     }
 
-    this.router.navigate(['Login']);
+    /*
+    * THIS method crashes until not valid JWT token has been released returnig true
+    if (tokenNotExpired()) {
+      return true;
+    }*/
+
+    this.router.navigate(['login']);
     return false;
   }
 }
