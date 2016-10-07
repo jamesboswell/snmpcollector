@@ -8,9 +8,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'home',
-  //directives: [CORE_DIRECTIVES,NgSwitch,NgSwitchWhen,NgSwitchDefault,SnmpDeviceCfgComponent],
-  templateUrl: '/public/home/home.html',
-  styleUrls: [ '/public/home/home.css' ]
+  templateUrl: 'public/home/home.html',
+  styleUrls: [ 'public/home/home.css' ]
 })
 
 export class Home {
@@ -22,26 +21,26 @@ export class Home {
 
 
   constructor(public router: Router, public http: Http, public authHttp: AuthHttp) {
-    this.jwt = localStorage.getItem('jwt');
-    this.decodedJwt = this.jwt;
+    this.jwt = localStorage.getItem('id_token');
+    console.log('creating home!! id_token:'+this.jwt);
+    this.decodedJwt = this.jwt ;
     this.item_type= "snmpdevice";
 
   }
 
   logout() {
-    localStorage.removeItem('jwt');
-    //this.router.parent.navigateByUrl('/login');
-    this.router.navigateByUrl('/login');
+    localStorage.removeItem('id_token');
+    this.router.navigate(['login']);
   }
 
   SNMPDevices() {
 	  this.item_type = "snmpdevice";
-	  alert('SnmpDevices!!!');
+	  console.log('SnmpDevices!!!');
   }
 
   SNMPMetrics () {
 	  this.item_type = "snmpmetrics";
-	  alert('SnmpMetrics!!!');
+	  console.log('SnmpMetrics!!!');
   }
   IflxMeasurements() {
 	  this.item_type = "ifluxmeas";
@@ -53,32 +52,4 @@ export class Home {
 	  this.item_type = "influxserver";
   }
 
-  /*
-  callAnonymousApi() {
-    this._callApi('Anonymous', 'http://localhost:3001/api/random-quote');
-  }
-
-  callSecuredApi() {
-    this._callApi('Secured', 'http://localhost:3001/api/protected/random-quote');
-  }
-
-  _callApi(type, url) {
-    this.response = null;
-    if (type === 'Anonymous') {
-      // For non-protected routes, just use Http
-      this.http.get(url)
-        .subscribe(
-          response => this.response = response.text(),
-          error => this.response = error.text()
-        );
-    }
-    if (type === 'Secured') {
-      // For protected routes, use AuthHttp
-      this.authHttp.get(url)
-        .subscribe(
-          response => this.response = response.text(),
-          error => this.response = error.text()
-        );
-    }
-  }*/
 }

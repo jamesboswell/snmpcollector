@@ -6,8 +6,8 @@ import { contentHeaders } from '../common/headers';
 
 @Component({
   selector: 'login',
-  templateUrl: '/public/login/login.html',
-  styleUrls: ['/public/login/login.css']
+  templateUrl: 'public/login/login.html',
+  styleUrls: ['public/login/login.css']
 })
 
 export class Login {
@@ -17,12 +17,12 @@ export class Login {
   login(event, username, password) {
     event.preventDefault();
     let body = JSON.stringify({ username, password });
-    this.http.post('/sessions/create', body, { headers: contentHeaders })
+    this.http.post('/session/create', body, { headers: contentHeaders })
       .subscribe(
         response => {
-          localStorage.setItem('id_token', response.json().id_token);
-          this.router.navigate(['home']);
-          //this.router.navigate('/');
+          console.log('id_token: '+response.json())
+          localStorage.setItem('id_token', response.json());
+          this.router.navigate(['Home']);
         },
         error => {
           alert(error.text());

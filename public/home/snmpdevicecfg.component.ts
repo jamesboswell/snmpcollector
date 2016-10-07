@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {  FormBuilder,  Validators} from '@angular/forms';
-//import { DropdownModule, PaginationModule ,AccordionModule } from 'ng2-bootstrap';
+import { AccordionModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { SnmpDeviceService } from './snmpdevicecfg.service';
 import {ControlMessages} from './control-messages.component';
 
@@ -11,11 +11,8 @@ import {ControlMessages} from './control-messages.component';
 @Component({
   selector: 'snmpdevs',
   providers: [SnmpDeviceService],
-  templateUrl: '/public/home/snmpdeviceeditor.html',
+  templateUrl: 'public/home/snmpdeviceeditor.html',
   styleUrls:['public/home/snmpdeviceeditor.css'],
-  //bindings: [SnmpDeviceService],
-  //viewBindings: [FORM_BINDINGS],
-  //directives: [FormBuilder,Validators,DropdownModule, PaginationModule ,AccordionModule,ControlMessages]
 })
 
 export class SnmpDeviceCfgComponent {

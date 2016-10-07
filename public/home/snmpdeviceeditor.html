@@ -1,149 +1,154 @@
+
+<H1>DEVICE</H1>
+
 <p [ngSwitch]="editmode">
-    <template *ngSwitchCase="list">
-	<div class="row-fluid">
-      		<div class=".col-md-3">
-        		<h2>SNMP devices</h2>
-        	</div>
-      		<div  class=".col-md-3">
-			<input type="text"  class="form-control" required   [(ngModel)]="filter" >
- 			<button type="submit" (click)="onFilter()" class="btn btn-primary">Filter</button>
-	 		<button type="button" (click)="newDevice()" class="btn btn-primary">New</button>
-     		</div>
-	</div>
+  <template *ngSwitchCase="list">
+    LIST
+    <div class="row-fluid">
+      <div class=".col-md-3">
+        <h2>SNMP devices</h2>
+      </div>
+      <div  class=".col-md-3">
+        <input type="text"  class="form-control" required   [(ngModel)]="filter" >
+        <button type="submit" (click)="onFilter()" class="btn btn-primary">Filter</button>
+        <button type="button" (click)="newDevice()" class="btn btn-primary">New</button>
+      </div>
+    </div>
 
-	<accordion [closeOthers]="oneAtATime">
-  		<accordion-group #group  *ngFor="let snmpdev of snmpdevs" [heading]="snmpdev.id">
-   			<div accordion-heading>
-    				<i style="top: -15px" class="pull-right glyphicon"
-         			[ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
-   			</div>
-		<!--content-->
-    			<i class="pull-right glyphicon glyphicon glyphicon-eye-open" (click)="viewItem(group,$event)"></i>
-    			<i class="pull-right glyphicon glyphicon glyphicon glyphicon-remove"  (click)="removeItem(group,$event)"></i>
+    <accordion [closeOthers]="oneAtATime">
+      <accordion-group #group  *ngFor="let snmpdev of snmpdevs" [heading]="snmpdev.id">
+        <div accordion-heading>
+          <i style="top: -15px" class="pull-right glyphicon"
+          [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+        </div>
 
-    		 {{ snmpdev.Host }}
-  		</accordion-group>
-	</accordion>
-     </template>
-     <template *ngSwitchCase="create">
-   	<form [formGroup]="snmpdevForm" class="ui form" (submit)="saveSnmpDev()">
-		<label for="id">id</label>
-		 <input ngControl="id" id="id" />
-		 <control-messages [control]="snmpdevForm.controls.id"></control-messages>
-		<label for="host">Host</label>
-      		<input ngControl="Host" id="Host" />
-		<control-messages [control]="snmpdevForm.controls.Host"></control-messages>
+        <i class="pull-right glyphicon glyphicon glyphicon-eye-open" (click)="viewItem(group,$event)"></i>
+        <i class="pull-right glyphicon glyphicon glyphicon glyphicon-remove"  (click)="removeItem(group,$event)"></i>
 
-		<label for="Port">Port</label>
-      		<input ngControl="Port" id="Port" />
-		<control-messages [control]="snmpdevForm.controls.Port"></control-messages>
+        {{ snmpdev.Host }}
+      </accordion-group>
+    </accordion>
+  </template>
+  <template *ngSwitchCase="create">
+    CREATE
+    <!--
+    <form [formGroup]="snmpdevForm" class="ui form" (submit)="saveSnmpDev()">
 
-		<label for="Retries">Retries</label>
-      		<input ngControl="Retries" id="Retries" />
-		<control-messages [control]="snmpdevForm.controls.Retries"></control-messages>
+      <label for="id">id</label>
+      <input ngControl="id" id="id" />
+      <control-messages [control]="snmpdevForm.controls.id"></control-messages>
 
-		<label for="Timeout">Timeout</label>
-      		<input ngControl="Timeout" id="Timeout" />
-		<control-messages [control]="snmpdevForm.controls.Timeout"></control-messages>
+      <label for="host">Host</label>
+      <input ngControl="Host" id="Host" />
+      <control-messages [control]="snmpdevForm.controls.Host"></control-messages>
 
-		<label for="SnmpVersion">SnmpVersion</label>
-		<select ngControl="SnmpVersion" id="SnmpVersion">
-			<option value="1">1</option>
-			<option value="2c"  selected="selected">2c</option>
-			<option value="3">3</option>
-		</select>
-      		<!--input ngControl="SnmpVersion" id="SnmpVersion" /-->
-		<control-messages [control]="snmpdevForm.controls.SnmpVersion"></control-messages>
-		<div *ngIf="snmpdevForm.value.SnmpVersion == '2c'" >
+      <label for="Port">Port</label>
+      <input ngControl="Port" id="Port" />
+      <control-messages [control]="snmpdevForm.controls.Port"></control-messages>
 
-		<label for="Community">Community</label>
-      		<input ngControl="Community" id="Community" />
-		<control-messages [control]="snmpdevForm.controls.Community"></control-messages>
+      <label for="Retries">Retries</label>
+      <input ngControl="Retries" id="Retries" />
+      <control-messages [control]="snmpdevForm.controls.Retries"></control-messages>
 
-		</div>
+      <label for="Timeout">Timeout</label>
+      <input ngControl="Timeout" id="Timeout" />
+      <control-messages [control]="snmpdevForm.controls.Timeout"></control-messages>
 
-		<div *ngIf="snmpdevForm.value.SnmpVersion == 3" >
+      <label for="SnmpVersion">SnmpVersion</label>
+      <select ngControl="SnmpVersion" id="SnmpVersion">
+        <option value="1">1</option>
+        <option value="2c"  selected="selected">2c</option>
+        <option value="3">3</option>
+      </select>
 
-		<label for="V3SecLevel">V3SecLevel</label>
+      <control-messages [control]="snmpdevForm.controls.SnmpVersion"></control-messages>
 
-		<select ngControl="V3SecLevel" id="V3SecLevel">
-			<option value="NoAuthNoPriv">NoAuthNoPriv</option>
-			<option value="AuthNoPriv"  selected="selected">AuthNoPriv</option>
-			<option value="AuthPriv">AuthPriv</option>
-		</select>
+      <div *ngIf="snmpdevForm.value.SnmpVersion == '2c'" >
 
-      		<!--input ngControl="V3SecLevel" id="V3SecLevel" /-->
-		<control-messages [control]="snmpdevForm.controls.V3SecLevel"></control-messages>
+        <label for="Community">Community</label>
+        <input ngControl="Community" id="Community" />
+        <control-messages [control]="snmpdevForm.controls.Community"></control-messages>
 
-		<label for="V3AuthUser">V3AuthUser</label>
-      		<input ngControl="V3AuthUser" id="V3AuthUser" />
-		<control-messages [control]="snmpdevForm.controls.V3AuthUser"></control-messages>
+      </div>
 
-		<label for="V3AuthPass">V3AuthPass</label>
-      		<input ngControl="V3AuthPass" id="V3AuthPass" />
-		<control-messages [control]="snmpdevForm.controls.V3AuthPass"></control-messages>
+      <div *ngIf="snmpdevForm.value.SnmpVersion == 3" >
 
+        <label for="V3SecLevel">V3SecLevel</label>
 
-		<label for="V3AuthProt">V3AuthProt</label>
-		<select ngControl="V3AuthProt" id="V3AuthProt">
-			<option value="MD5">MD5</option>
-			<option value="SHA">SHA</option>
-		</select>
+        <select ngControl="V3SecLevel" id="V3SecLevel">
+          <option value="NoAuthNoPriv">NoAuthNoPriv</option>
+          <option value="AuthNoPriv"  selected="selected">AuthNoPriv</option>
+          <option value="AuthPriv">AuthPriv</option>
+        </select>
+
+        <control-messages [control]="snmpdevForm.controls.V3SecLevel"></control-messages>
+
+        <label for="V3AuthUser">V3AuthUser</label>
+        <input ngControl="V3AuthUser" id="V3AuthUser" />
+        <control-messages [control]="snmpdevForm.controls.V3AuthUser"></control-messages>
+
+        <label for="V3AuthPass">V3AuthPass</label>
+        <input ngControl="V3AuthPass" id="V3AuthPass" />
+        <control-messages [control]="snmpdevForm.controls.V3AuthPass"></control-messages>
 
 
-      		<!--input ngControl="V3AuthProt" id="V3AuthProt" /-->
-		<control-messages [control]="snmpdevForm.controls.V3AuthProt"></control-messages>
+        <label for="V3AuthProt">V3AuthProt</label>
+        <select ngControl="V3AuthProt" id="V3AuthProt">
+          <option value="MD5">MD5</option>
+          <option value="SHA">SHA</option>
+        </select>
 
-		<label for="V3PrivPass">V3PrivPass</label>
-      		<input ngControl="V3PrivPass" id="V3PrivPass" />
-		<control-messages [control]="snmpdevForm.controls.V3PrivPass"></control-messages>
+        <control-messages [control]="snmpdevForm.controls.V3AuthProt"></control-messages>
 
-		<label for="V3PrivProt">V3PrivProt</label>
-		<select ngControl="V3PrivProt" id="V3PrivProt">
-			<option value="AES">AES</option>
-			<option value="DES">DES</option>
-		</select>
+        <label for="V3PrivPass">V3PrivPass</label>
+        <input ngControl="V3PrivPass" id="V3PrivPass" />
+        <control-messages [control]="snmpdevForm.controls.V3PrivPass"></control-messages>
 
+        <label for="V3PrivProt">V3PrivProt</label>
+        <select ngControl="V3PrivProt" id="V3PrivProt">
+          <option value="AES">AES</option>
+          <option value="DES">DES</option>
+        </select>
 
-      		<!--input ngControl="V3PrivProt" id="V3PrivProt" /-->
-		<control-messages [control]="snmpdevForm.controls.V3PrivProt"></control-messages>
-		</div>
+        <control-messages [control]="snmpdevForm.controls.V3PrivProt"></control-messages>
+      </div>
 
-		<label for="Freq">Freq</label>
-      		<input ngControl="Freq" id="Freq" />
-		<control-messages [control]="snmpdevForm.controls.Freq"></control-messages>
+      <label for="Freq">Freq</label>
+      <input ngControl="Freq" id="Freq" />
+      <control-messages [control]="snmpdevForm.controls.Freq"></control-messages>
 
-		<label for="Config">Config</label>
-      		<input ngControl="Config" id="Config" />
-		<control-messages [control]="snmpdevForm.controls.Config"></control-messages>
+      <label for="Config">Config</label>
+      <input ngControl="Config" id="Config" />
+      <control-messages [control]="snmpdevForm.controls.Config"></control-messages>
 
-		<label for="LogLevel">LogLevel</label>
-      		<input ngControl="LogLevel" id="LogLevel" />
-		<control-messages [control]="snmpdevForm.controls.LogLevel"></control-messages>
+      <label for="LogLevel">LogLevel</label>
+      <input ngControl="LogLevel" id="LogLevel" />
+      <control-messages [control]="snmpdevForm.controls.LogLevel"></control-messages>
 
-		<label for="SnmpDebug">SnmpDebug</label>
-      		<input ngControl="SnmpDebug" id="SnmpDebug" />
-		<control-messages [control]="snmpdevForm.controls.SnmpDebug"></control-messages>
+      <label for="SnmpDebug">SnmpDebug</label>
+      <input ngControl="SnmpDebug" id="SnmpDebug" />
+      <control-messages [control]="snmpdevForm.controls.SnmpDebug"></control-messages>
 
-		<label for="DeviceTagMame">DeviceTagMame</label>
-      		<input ngControl="DeviceTagMame" id="DeviceTagMame" />
-		<control-messages [control]="snmpdevForm.controls.DeviceTagMame"></control-messages>
+      <label for="DeviceTagMame">DeviceTagMame</label>
+      <input ngControl="DeviceTagMame" id="DeviceTagMame" />
+      <control-messages [control]="snmpdevForm.controls.DeviceTagMame"></control-messages>
 
-		<label for="DeviceTagValue">DeviceTagValue</label>
-      		<input ngControl="DeviceTagValue" id="DeviceTagValue" />
-		<control-messages [control]="snmpdevForm.controls.DeviceTagValue"></control-messages>
+      <label for="DeviceTagValue">DeviceTagValue</label>
+      <input ngControl="DeviceTagValue" id="DeviceTagValue" />
+      <control-messages [control]="snmpdevForm.controls.DeviceTagValue"></control-messages>
 
-		<label for="Extratags">Extratags</label>
-      		<input ngControl="Extratags" id="Extratags" />
-		<control-messages [control]="snmpdevForm.controls.Extratags"></control-messages>
+      <label for="Extratags">Extratags</label>
+      <input ngControl="Extratags" id="Extratags" />
+      <control-messages [control]="snmpdevForm.controls.Extratags"></control-messages>
 
-		<button type="submit" [disabled]="!snmpdevForm.valid">Submit</button>
-		<button type="reset" [disabled]="!snmpdevForm.dirty">Reset</button>
-		<button type="button" class="ui button" (click)="cancelEdit()">Cancel</button>
-    	</form>
+      <button type="submit" [disabled]="!snmpdevForm.valid">Submit</button>
+      <button type="reset" [disabled]="!snmpdevForm.dirty">Reset</button>
+      <button type="button" class="ui button" (click)="cancelEdit()">Cancel</button>
+    </form>
+-->
 
-     </template>
-     <template *ngSwitchCase="modify">
-	MODIFY
-     </template>
+  </template>
+  <template *ngSwitchCase="modify">
+    MODIFY
+  </template>
 </p>
