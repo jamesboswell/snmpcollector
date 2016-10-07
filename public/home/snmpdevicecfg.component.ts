@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {  FormBuilder,  Validators} from '@angular/forms';
 import { AccordionModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { SnmpDeviceService } from './snmpdevicecfg.service';
-import {ControlMessages} from './control-messages.component';
+//import {ControlMessages} from './control-messages.component';
 
 
 

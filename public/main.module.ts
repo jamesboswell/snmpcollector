@@ -15,6 +15,7 @@ import { App } from './app/app';
 import { routes } from './app/app.routes';
 //
 import { SnmpDeviceCfgComponent } from './home/snmpdevicecfg.component';
+import { ControlMessagesComponent } from './home/control-messages.component';
 //import { DropdownModule, PaginationModule ,AccordionModule } from 'ng2-bootstrap/ng2-bootstrap';
 // http://valor-software.com/ng2-bootstrap/#/accordion
 // https://github.com/valor-software/angular2-quickstart
@@ -27,6 +28,7 @@ import { AccordionModule } from 'ng2-bootstrap/ng2-bootstrap';
   declarations: [
     //DropdownModule, PaginationModule ,AccordionModule,
     SnmpDeviceCfgComponent,
+    ControlMessagesComponent,
     Home,
     Login,
     App,
